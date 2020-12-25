@@ -70,6 +70,13 @@ namespace ProjectVivid7.ECS
             entity.OnAddEntity(this);
             return entity;
         }
+        public Entity AddEntity<T>(T entity) where T : Entity
+        {
+            Entities.Add(entity);
+            entity.OnAddEntity(this);
+            return entity;
+        }
+
         public void RemoveEntity(Entity entity) => Entities.Remove(entity);
     }
 }

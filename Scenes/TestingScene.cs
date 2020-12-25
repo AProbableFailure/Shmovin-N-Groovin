@@ -9,6 +9,7 @@ using ProjectVivid7.Components.Physics;
 using Microsoft.Xna.Framework;
 using ProjectVivid7.Utilities.Managers;
 using ProjectVivid7.Utilities.Extensions;
+using ProjectVivid7.Entities;
 
 namespace ProjectVivid7.Scenes
 {
@@ -19,16 +20,18 @@ namespace ProjectVivid7.Scenes
             var background = AddEntity("background");
             background.AddComponent(new Texture2DComponent("Test_Floor"));
 
-            var player = AddEntity("player");
-            player.AddComponent(new Texture2DComponent("SmileyWalk"));
-            player.AddComponent(new ControllerComponent());
-
-            var playerAnimations = player.AddComponent(new AnimationComponent());
-            playerAnimations.AddAnimation("crouching", new Animation("SmileyWalk", 4, 4, 0.1f), () => player.GetComponent<MovementComponent>().Speed == 1f);
-            playerAnimations.AddAnimation("walking", new Animation("SmileyWalk", 4, 4, 0.05f), () => player.GetComponent<MovementComponent>().Speed == 2f);
-            playerAnimations.AddAnimation("sprinting", new Animation("SmileyWalk", 4, 4, 0.01f), () => player.GetComponent<MovementComponent>().Speed == 4f);
-
+            var player = AddEntity(new PlayerEntity("player"));
             player.AddComponent(new FollowCameraComponent());
+            //var player = AddEntity("player");
+            //player.AddComponent(new Texture2DComponent("SmileyWalk"));
+            //player.AddComponent(new ControllerComponent());
+
+            //var playerAnimations = player.AddComponent(new AnimationComponent());
+            //playerAnimations.AddAnimation("crouching", new Animation("SmileyWalk", 4, 4, 0.1f), () => player.GetComponent<MovementComponent>().Speed == 1f);
+            //playerAnimations.AddAnimation("walking", new Animation("SmileyWalk", 4, 4, 0.05f), () => player.GetComponent<MovementComponent>().Speed == 2f);
+            //playerAnimations.AddAnimation("sprinting", new Animation("SmileyWalk", 4, 4, 0.01f), () => player.GetComponent<MovementComponent>().Speed == 4f);
+
+            //player.AddComponent(new FollowCameraComponent());
 
             var rope = AddEntity("rope");
             Func<Vector2> firstAnchor = () => player.CenterPosition;//InputManager.MouseWorldPosition;

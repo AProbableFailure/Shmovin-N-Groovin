@@ -148,12 +148,13 @@ namespace ProjectVivid7.ECS.ECSUtilities
 
                 for (var i = 0; i < _tempBufferList.Count; i++)
                 {
-                    var component = _tempBufferList[i];
-                    component.OnAddComponent(_entity);
+                    //var component = _tempBufferList[i];
+                    //component.OnAddComponent(_entity);
+                    _tempBufferList[i].OnAddComponent(_entity);
 
                     // component.enabled checks both the Entity and the Component
                     //if (component.Enabled)
-                        //component.OnEnabled();
+                    //component.OnEnabled();
                 }
 
                 _tempBufferList.Clear();

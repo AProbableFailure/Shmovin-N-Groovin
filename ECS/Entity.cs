@@ -93,5 +93,15 @@ namespace ProjectVivid7.ECS
         {
             RemoveComponent(GetComponent<T>());
         }
+
+        public List<Component> AddComponentModule<T>() where T : ComponentModule, new() => AddComponentModule(new T());
+        public List<Component> AddComponentModule<T>(T module) where T : ComponentModule
+        {
+            foreach (Component component in module.ModuleComponents)
+            {
+                AddComponent(component);
+            }
+            return module.ModuleComponents;
+        }
     }
 }
